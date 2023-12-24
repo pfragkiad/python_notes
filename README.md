@@ -1,7 +1,30 @@
 # python_notes
 
 
-## multithreading example
+## Multithreading
+
+Simple Thread approach:
+
+```python
+import threading
+
+def download_video(url):
+    with yt_dlp.YoutubeDL() as ydl:
+        ydl.download(url)
+
+threads=[]
+for url in videos:
+    t = threading.Thread(target=download_video,args=(url,))
+    t.start()
+    threads.append(t)
+
+for t in threads:
+    t.join()
+
+```
+
+
+Threadpool control of number of threads:
 
 ```python
 from  concurrent.futures import ThreadPoolExecutor 
