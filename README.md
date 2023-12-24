@@ -51,3 +51,31 @@ if __name__ == "__main__":
     execute_with_threadpool(max_threads)
     print(len(items))
 ```
+
+
+Thread-safe list
+
+```python
+import threading
+
+my_list = []
+lock = threading.Lock()
+
+def append_to_list(item):
+    global my_list
+    with lock:
+        my_list.append(item)
+
+# Create threads to append items to the list concurrently
+threads = []
+for i in range(5):
+    thread = threading.Thread(target=append_to_list, args=(i,))
+    threads.append(thread)
+    thread.start()
+
+for thread in threads:
+    thread.join()
+
+print("Modified list:", my_list)
+
+```
