@@ -20,7 +20,6 @@ for url in videos:
 
 for t in threads:
     t.join()
-
 ```
 
 
